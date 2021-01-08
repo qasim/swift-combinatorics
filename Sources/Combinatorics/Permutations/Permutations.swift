@@ -73,7 +73,7 @@ extension Permutations {
         var values = Array(self.values)
 
         while permutation.count < length {
-            permutation.append(values.remove(at: indices.popLast() ?? 0))
+            permutation.append(values.remove(at: indices.removeLast()))
         }
 
         return permutation
