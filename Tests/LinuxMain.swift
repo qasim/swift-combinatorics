@@ -1,7 +1,1 @@
-import XCTest
-
-import CombinatoricsTests
-
-var tests = [XCTestCaseEntry]()
-tests += CombinatoricsTests.allTests()
-XCTMain(tests)
+fatalError("Use --enable-test-discovery to run tests on Linux")

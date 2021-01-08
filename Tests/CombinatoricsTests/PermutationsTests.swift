@@ -2,19 +2,9 @@ import XCTest
 @testable import Combinatorics
 
 final class PermutationsTests: XCTestCase {
-    static var allTests = [
-        ("testEmptyCollectionWithReplacement", testEmptyCollectionWithReplacement),
-        ("testSingleItemCollectionWithReplacement", testOneItemCollectionWithReplacement),
-        ("testTwoItemCollectionWithReplacement", testTwoItemCollectionWithReplacement),
-        ("testThreeItemCollectionWithReplacement", testThreeItemCollectionWithReplacement),
-        ("testStringsWithReplacement", testStringsWithReplacement),
-        ("testCollectionExtensionWithReplacement", testCollectionExtensionWithReplacement),
-    ]
-}
 
-// MARK: - Permutations with replacement
+    // MARK: - Permutations with replacement
 
-extension PermutationsTests {
     func testEmptyCollectionWithReplacement() {
         for length in 0...3 {
             XCTAssertEqual(
@@ -117,11 +107,9 @@ extension PermutationsTests {
             Array("abc".permutations(length: 1, withReplacement: true))
         )
     }
-}
 
-// MARK: - Permutations
+    // MARK: - Permutations without replacement
 
-extension PermutationsTests {
     func testEmptyCollection() {
         XCTAssertEqual(
             Array(Permutations([Int](), length: 0)),
