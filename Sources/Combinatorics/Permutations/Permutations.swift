@@ -54,24 +54,19 @@ extension Permutations {
 
 extension Permutations {
     private func permutationWithReplacement(at index: Int) -> Element {
-        var indices: [ValueCollection.Index] = []
-
-        var quotient: Int = index
-        var remainder: Int = 0
-
-        while indices.count != length {
-            (quotient, remainder) = quotient.quotientAndRemainder(dividingBy: values.count)
-            indices.append(values.index(values.startIndex, offsetBy: remainder))
-        }
-
-        return indices.reversed().map { values[$0] }
+        index
+            .base(radix: values.count, size: length)
+            .reversed()
+            .map { index in
+                values[index]
+            }
     }
 
     private func permutation(at index: Int) -> Element {
         var permutation = Element()
 
         let stride = (values.count - length).factorial
-        var indices = (index * stride).factoradic(values.count)
+        var indices = (index * stride).factorialBase(size: values.count)
         var values = Array(self.values)
 
         while permutation.count < length {
