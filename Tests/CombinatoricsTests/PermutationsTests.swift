@@ -8,8 +8,11 @@ final class PermutationsTests: XCTestCase {
         ("testTwoItemCollectionWithReplacement", testTwoItemCollectionWithReplacement),
         ("testThreeItemCollectionWithReplacement", testThreeItemCollectionWithReplacement),
         ("testStringsWithReplacement", testStringsWithReplacement),
+        ("testCollectionExtensionWithReplacement", testCollectionExtensionWithReplacement),
     ]
 }
+
+// MARK: - Permutations with replacement
 
 extension PermutationsTests {
     func testEmptyCollectionWithReplacement() {
@@ -105,6 +108,99 @@ extension PermutationsTests {
         XCTAssertEqual(
             Array(Permutations("abc", length: 2, withReplacement: true)),
             [["a", "a"], ["a", "b"], ["a", "c"], ["b", "a"], ["b", "b"], ["b", "c"], ["c", "a"], ["c", "b"], ["c", "c"]]
+        )
+    }
+
+    func testCollectionExtensionWithReplacement() {
+        XCTAssertEqual(
+            Array(Permutations("abc", length: 1, withReplacement: true)),
+            Array("abc".permutations(length: 1, withReplacement: true))
+        )
+    }
+}
+
+// MARK: - Permutations
+
+extension PermutationsTests {
+    func testEmptyCollection() {
+        XCTAssertEqual(
+            Array(Permutations([Int](), length: 0)),
+            []
+        )
+    }
+
+    func testOneItemCollection() {
+        XCTAssertEqual(
+            Array(Permutations([1], length: 0)),
+            []
+        )
+
+        XCTAssertEqual(
+            Array(Permutations([1], length: 1)),
+            [[1]]
+        )
+    }
+
+    func testTwoItemCollection() {
+        XCTAssertEqual(
+            Array(Permutations([1, 2], length: 0)),
+            []
+        )
+
+        XCTAssertEqual(
+            Array(Permutations([1, 2], length: 1)),
+            [[1], [2]]
+        )
+
+        XCTAssertEqual(
+            Array(Permutations([1, 2], length: 2)),
+            [[1, 2], [2, 1]]
+        )
+    }
+
+    func testThreeItemCollection() {
+        XCTAssertEqual(
+            Array(Permutations([1, 2, 3], length: 0)),
+            []
+        )
+
+        XCTAssertEqual(
+            Array(Permutations([1, 2, 3], length: 1)),
+            [[1], [2], [3]]
+        )
+
+        XCTAssertEqual(
+            Array(Permutations([1, 2, 3], length: 2)),
+            [[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]]
+        )
+
+        XCTAssertEqual(
+            Array(Permutations([1, 2, 3], length: 3)),
+            [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+        )
+    }
+
+    func testStrings() {
+        XCTAssertEqual(
+            Array(Permutations("abc", length: 0)),
+            []
+        )
+
+        XCTAssertEqual(
+            Array(Permutations("abc", length: 1)),
+            [["a"], ["b"], ["c"]]
+        )
+
+        XCTAssertEqual(
+            Array(Permutations("abc", length: 2)),
+            [["a", "b"], ["a", "c"], ["b", "a"], ["b", "c"], ["c", "a"], ["c", "b"]]
+        )
+    }
+
+    func testCollectionExtension() {
+        XCTAssertEqual(
+            Array(Permutations("abc", length: 1)),
+            Array("abc".permutations(length: 1))
         )
     }
 }

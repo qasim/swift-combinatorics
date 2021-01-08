@@ -9,7 +9,13 @@ public struct Permutations<C: Collection> {
     private let length: Int
     private let withReplacement: Bool
 
-    public init(_ values: C, length: Int, withReplacement: Bool) {
+    public init(_ values: C, length: Int, withReplacement: Bool = false) {
+        assert(length >= 0, "length must be non-negative")
+
+        if !withReplacement {
+            assert(length <= values.count, "length must be less than or equal to the number of values")
+        }
+
         self.values = values
         self.length = length
         self.withReplacement = withReplacement
@@ -60,7 +66,16 @@ extension Permutations {
     }
 
     private func permutation(at index: Int) -> Element {
-        // TODO
-        []
+        var permutation = Element()
+
+        let stride = (values.count - length).factorial
+        var indices = (index * stride).factoradic(values.count)
+        var values = Array(self.values)
+
+        while permutation.count < length {
+            permutation.append(values.remove(at: indices.popLast() ?? 0))
+        }
+
+        return permutation
     }
 }
