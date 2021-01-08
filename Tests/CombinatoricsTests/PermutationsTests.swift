@@ -49,12 +49,18 @@ final class PermutationsTests: XCTestCase {
 
         XCTAssertEqual(
             Array(Permutations([1, 2], length: 2, withReplacement: true)),
-            [[1, 1], [1, 2], [2, 1], [2, 2]]
+            [
+                [1, 1], [1, 2],
+                [2, 1], [2, 2]
+            ]
         )
 
         XCTAssertEqual(
             Array(Permutations([1, 2], length: 3, withReplacement: true)),
-            [[1, 1, 1], [1, 1, 2], [1, 2, 1], [1, 2, 2], [2, 1, 1], [2, 1, 2], [2, 2, 1], [2, 2, 2]]
+            [
+                [1, 1, 1], [1, 1, 2], [1, 2, 1], [1, 2, 2],
+                [2, 1, 1], [2, 1, 2], [2, 2, 1], [2, 2, 2]
+            ]
         )
     }
 
@@ -71,7 +77,11 @@ final class PermutationsTests: XCTestCase {
 
         XCTAssertEqual(
             Array(Permutations([1, 2, 3], length: 2, withReplacement: true)),
-            [[1, 1], [1, 2], [1, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3]]
+            [
+                [1, 1], [1, 2], [1, 3],
+                [2, 1], [2, 2], [2, 3],
+                [3, 1], [3, 2], [3, 3]
+            ]
         )
 
         XCTAssertEqual(
@@ -97,7 +107,11 @@ final class PermutationsTests: XCTestCase {
 
         XCTAssertEqual(
             Array(Permutations("abc", length: 2, withReplacement: true)),
-            [["a", "a"], ["a", "b"], ["a", "c"], ["b", "a"], ["b", "b"], ["b", "c"], ["c", "a"], ["c", "b"], ["c", "c"]]
+            [
+                ["a", "a"], ["a", "b"], ["a", "c"],
+                ["b", "a"], ["b", "b"], ["b", "c"],
+                ["c", "a"], ["c", "b"], ["c", "c"]
+            ]
         )
     }
 
@@ -159,12 +173,20 @@ final class PermutationsTests: XCTestCase {
 
         XCTAssertEqual(
             Array(Permutations([1, 2, 3], length: 2)),
-            [[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]]
+            [
+                [1, 2], [1, 3],
+                [2, 1], [2, 3],
+                [3, 1], [3, 2]
+            ]
         )
 
         XCTAssertEqual(
             Array(Permutations([1, 2, 3], length: 3)),
-            [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+            [
+                [1, 2, 3], [1, 3, 2],
+                [2, 1, 3], [2, 3, 1],
+                [3, 1, 2], [3, 2, 1]
+            ]
         )
     }
 
@@ -181,7 +203,11 @@ final class PermutationsTests: XCTestCase {
 
         XCTAssertEqual(
             Array(Permutations("abc", length: 2)),
-            [["a", "b"], ["a", "c"], ["b", "a"], ["b", "c"], ["c", "a"], ["c", "b"]]
+            [
+                ["a", "b"], ["a", "c"],
+                ["b", "a"], ["b", "c"],
+                ["c", "a"], ["c", "b"]
+            ]
         )
     }
 

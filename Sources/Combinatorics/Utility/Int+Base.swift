@@ -30,14 +30,13 @@ extension Int {
     var factorialBase: [Int] {
         var coefficients = [Int]()
 
-        var radix = 1
         var quotient = self
         var remainder = 0
+        var radix = 1
 
         while quotient > 0 {
             (quotient, remainder) = quotient.quotientAndRemainder(dividingBy: radix)
             coefficients.append(remainder)
-
             radix += 1
         }
 
