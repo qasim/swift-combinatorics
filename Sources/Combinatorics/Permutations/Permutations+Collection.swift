@@ -13,20 +13,20 @@ extension Permutations: Collection {
         i + 1
     }
 
-    public func makeIterator() -> PermutationsIterator<C> {
+    public func makeIterator() -> PermutationsIterator<ValueCollection> {
         PermutationsIterator(self)
     }
 }
 
-public struct PermutationsIterator<C: Collection>: IteratorProtocol {
-    private let permutations: Permutations<C>
+public struct PermutationsIterator<ValueCollection: Collection>: IteratorProtocol {
+    private let permutations: Permutations<ValueCollection>
     private var currentIndex: Int = -1
 
-    public init(_ permutations: Permutations<C>) {
+    public init(_ permutations: Permutations<ValueCollection>) {
         self.permutations = permutations
     }
 
-    public mutating func next() -> Permutations<C>.Element? {
+    public mutating func next() -> Permutations<ValueCollection>.Element? {
         currentIndex += 1
 
         guard currentIndex < permutations.count else {

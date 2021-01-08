@@ -1,15 +1,15 @@
 import Foundation
 
-public struct Permutations<C: Collection> {
-    public typealias Element = [C.Element]
+public struct Permutations<ValueCollection: Collection> {
+    public typealias Element = [ValueCollection.Element]
 
     public let count: Int
 
-    private let values: C
+    private let values: ValueCollection
     private let length: Int
     private let withReplacement: Bool
 
-    public init(_ values: C, length: Int, withReplacement: Bool = false) {
+    public init(_ values: ValueCollection, length: Int, withReplacement: Bool = false) {
         assert(length >= 0, "length must be non-negative")
 
         if !withReplacement {
@@ -52,7 +52,7 @@ extension Permutations {
 
 extension Permutations {
     private func permutationWithReplacement(at index: Int) -> Element {
-        var indices: [C.Index] = []
+        var indices: [ValueCollection.Index] = []
 
         var quotient: Int = index
         var remainder: Int = 0
