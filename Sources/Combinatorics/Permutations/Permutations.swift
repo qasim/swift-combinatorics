@@ -9,7 +9,9 @@ public struct Permutations<ValueCollection: Collection> {
     private let length: Int
     private let withReplacement: Bool
 
-    public init(_ values: ValueCollection, length: Int, withReplacement: Bool = false) {
+    public init(_ values: ValueCollection, length: Int? = nil, withReplacement: Bool = false) {
+        let length = length ?? values.count
+
         assert(length >= 0, "length must be non-negative")
 
         if !withReplacement {
