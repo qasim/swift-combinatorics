@@ -35,21 +35,50 @@ public struct Combinations<ValueCollection: Collection> {
 }
 
 extension Combinations {
-    private static func countWithReplacement(numberOfValues: Int, length: Int) -> Int {
+    static func countWithReplacement(numberOfValues: Int, length: Int) -> Int {
         (numberOfValues + length - 1).factorial / (length.factorial * (numberOfValues - 1).factorial)
     }
 
-    private static func count(numberOfValues: Int, length: Int) -> Int {
+    static func count(numberOfValues: Int, length: Int) -> Int {
         numberOfValues.factorial / (length.factorial * (numberOfValues - length).factorial)
     }
 }
 
 extension Combinations {
     private func combinationWithReplacement(at index: Int) -> Element {
+        // TODO
         []
     }
 
     private func combination(at index: Int) -> Element {
-        []
+        combinatorialNumbers(of: index, length: length).map { values[$0] }
+    }
+}
+
+extension Combinations {
+    private func combinatorialNumbers(of degree: Int, length: Int) -> [Int] {
+        var numbers = [Int]()
+
+        var currentDegree = degree
+        var currentLength = length
+
+        while numbers.count < length {
+            var count = 0
+
+            for numberOfValues in currentLength... {
+                let nextCount = Self.count(numberOfValues: numberOfValues, length: currentLength)
+
+                if nextCount > currentDegree {
+                    currentDegree = currentDegree - count
+                    currentLength -= 1
+                    numbers.append(numberOfValues - 1)
+                    break
+                }
+
+                count = nextCount
+            }
+        }
+
+        return numbers
     }
 }

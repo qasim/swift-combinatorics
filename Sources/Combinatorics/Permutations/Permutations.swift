@@ -57,9 +57,7 @@ extension Permutations {
         index
             .base(radix: values.count, size: length)
             .reversed()
-            .map { index in
-                values[index]
-            }
+            .map { values[$0] }
     }
 
     private func permutation(at index: Int) -> Element {
