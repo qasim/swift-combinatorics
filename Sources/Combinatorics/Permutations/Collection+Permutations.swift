@@ -7,8 +7,8 @@ extension Collection {
     ///     - length: The number of elements per permutation (defaults to the number of elements in the collection).
     ///     - withReplacement: Whether or not elements are allowed to be repeated more than once.
     ///
-    /// - Complexity: Permutations are only computed upon iteration, and accessing any element in the collection of
-    ///               permutations has a runtime of O(?).
+    /// - Complexity: Each permutation is only computed upon access, and accessing any element in the collection of
+    ///               permutations has a runtime of `O(n)`.
     ///
     /// - SeeAlso: [Permutations](https://en.wikipedia.org/wiki/Permutations)
     ///
