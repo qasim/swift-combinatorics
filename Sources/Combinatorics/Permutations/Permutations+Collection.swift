@@ -1,7 +1,7 @@
 import Foundation
 
 extension Permutations: Collection {
-    public typealias Element = [ValueCollection.Element]
+    public typealias Element = [ElementCollection.Element]
 
     public var startIndex: Int {
         0
@@ -15,20 +15,20 @@ extension Permutations: Collection {
         i + 1
     }
 
-    public func makeIterator() -> PermutationsIterator<ValueCollection> {
+    public func makeIterator() -> PermutationsIterator<ElementCollection> {
         PermutationsIterator(self)
     }
 }
 
-public struct PermutationsIterator<ValueCollection: Collection>: IteratorProtocol {
-    private let permutations: Permutations<ValueCollection>
+public struct PermutationsIterator<ElementCollection: Collection>: IteratorProtocol {
+    private let permutations: Permutations<ElementCollection>
     private var currentIndex: Int = -1
 
-    public init(_ permutations: Permutations<ValueCollection>) {
+    public init(_ permutations: Permutations<ElementCollection>) {
         self.permutations = permutations
     }
 
-    public mutating func next() -> Permutations<ValueCollection>.Element? {
+    public mutating func next() -> Permutations<ElementCollection>.Element? {
         currentIndex += 1
 
         guard currentIndex < permutations.count else {

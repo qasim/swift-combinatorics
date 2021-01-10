@@ -4,13 +4,8 @@ A package of common algorithms in the area of [combinatorics](https://wikipedia.
 
 ## Contents
 
-### [Combinations](https://github.com/qasim/swift-combinatorics/blob/main/Sources/Combinatorics/Combinations)
-
-TODO: description
-
-### [Permutations](https://github.com/qasim/swift-combinatorics/blob/main/Sources/Combinatorics/Permutations)
-
-TODO: description
+- [`combinations(length:withReplacement:)`](https://github.com/qasim/swift-combinatorics/blob/main/Sources/Combinatorics/Combinations)
+- [`permutations(length:withReplacement:)`](https://github.com/qasim/swift-combinatorics/blob/main/Sources/Combinatorics/Permutations)
 
 ## Usage
 

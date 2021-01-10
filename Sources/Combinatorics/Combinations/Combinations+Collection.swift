@@ -1,8 +1,8 @@
 import Foundation
 
 extension Combinations: Collection {
-    public typealias Element = [ValueCollection.Element]
-    
+    public typealias Element = [ElementCollection.Element]
+
     public var startIndex: Int {
         0
     }
@@ -15,20 +15,20 @@ extension Combinations: Collection {
         i + 1
     }
 
-    public func makeIterator() -> CombinationsIterator<ValueCollection> {
+    public func makeIterator() -> CombinationsIterator<ElementCollection> {
         CombinationsIterator(self)
     }
 }
 
-public struct CombinationsIterator<ValueCollection: Collection>: IteratorProtocol {
-    private let combinations: Combinations<ValueCollection>
+public struct CombinationsIterator<ElementCollection: Collection>: IteratorProtocol {
+    private let combinations: Combinations<ElementCollection>
     private var currentIndex: Int = -1
 
-    public init(_ combinations: Combinations<ValueCollection>) {
+    public init(_ combinations: Combinations<ElementCollection>) {
         self.combinations = combinations
     }
 
-    public mutating func next() -> Combinations<ValueCollection>.Element? {
+    public mutating func next() -> Combinations<ElementCollection>.Element? {
         currentIndex += 1
 
         guard currentIndex < combinations.count else {
