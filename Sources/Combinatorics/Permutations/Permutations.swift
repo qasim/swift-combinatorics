@@ -1,13 +1,11 @@
 import Foundation
 
 public struct Permutations<ValueCollection: Collection> {
-    public typealias Element = [ValueCollection.Element]
-
-    public let count: Int
-
     private let values: ValueCollection
     private let length: Int
     private let withReplacement: Bool
+
+    public let count: Int
 
     public init(_ values: ValueCollection, length: Int? = nil, withReplacement: Bool = false) {
         let length = length ?? values.count
@@ -54,8 +52,7 @@ extension Permutations {
 
 extension Permutations {
     private func permutationWithReplacement(at index: Int) -> Element {
-        index
-            .base(radix: values.count, size: length)
+        baseCoefficents(of: index, radix: values.count)
             .reversed()
             .map { values[$0] }
     }
@@ -64,7 +61,7 @@ extension Permutations {
         var permutation = Element()
 
         let stride = (values.count - length).factorial
-        var indices = (index * stride).factorialBase(size: values.count)
+        var indices = factorialCoefficients(of: index * stride)
         var values = Array(self.values)
 
         while permutation.count < length {
@@ -72,5 +69,45 @@ extension Permutations {
         }
 
         return permutation
+    }
+}
+
+extension Permutations {
+    func baseCoefficents(of degree: Int, radix: Int) -> [Int] {
+        var coefficients = [Int]()
+
+        var quotient = degree
+        var remainder = 0
+
+        while quotient > 0 {
+            (quotient, remainder) = quotient.quotientAndRemainder(dividingBy: radix)
+            coefficients.append(remainder)
+        }
+
+        while coefficients.count < length {
+            coefficients.append(0)
+        }
+
+        return coefficients
+    }
+
+    func factorialCoefficients(of degree: Int) -> [Int] {
+        var coefficients = [Int]()
+
+        var quotient = degree
+        var remainder = 0
+        var radix = 1
+
+        while quotient > 0 {
+            (quotient, remainder) = quotient.quotientAndRemainder(dividingBy: radix)
+            coefficients.append(remainder)
+            radix += 1
+        }
+
+        while coefficients.count < values.count {
+            coefficients.append(0)
+        }
+
+        return coefficients
     }
 }

@@ -1,15 +1,19 @@
 import Foundation
 
 public struct Combinations<ValueCollection: Collection> {
-    public typealias Element = [ValueCollection.Element]
-
-    public let count: Int
-
     private let values: ValueCollection
     private let length: Int
     private let withReplacement: Bool
 
+    public let count: Int
+
     public init(_ values: ValueCollection, length: Int, withReplacement: Bool = false) {
+        assert(length >= 0, "length must be non-negative")
+
+        if !withReplacement {
+            assert(length <= values.count, "length must be less than or equal to the number of values")
+        }
+        
         self.values = values
         self.length = length
         self.withReplacement = withReplacement
@@ -26,11 +30,7 @@ public struct Combinations<ValueCollection: Collection> {
     }
 
     public subscript(_ index: Int) -> Element {
-        if withReplacement {
-            return combinationWithReplacement(at: index)
-        } else {
-            return combination(at: index)
-        }
+        combinatorialNumbers(of: index).reversed().map { values[$0] }
     }
 }
 
@@ -45,18 +45,7 @@ extension Combinations {
 }
 
 extension Combinations {
-    private func combinationWithReplacement(at index: Int) -> Element {
-        // TODO
-        []
-    }
-
-    private func combination(at index: Int) -> Element {
-        combinatorialNumbers(of: index, length: length).map { values[$0] }
-    }
-}
-
-extension Combinations {
-    private func combinatorialNumbers(of degree: Int, length: Int) -> [Int] {
+    private func combinatorialNumbers(of degree: Int) -> [Int] {
         var numbers = [Int]()
 
         var currentDegree = degree
@@ -65,11 +54,13 @@ extension Combinations {
         while numbers.count < length {
             var count = 0
 
-            for numberOfValues in currentLength... {
-                let nextCount = Self.count(numberOfValues: numberOfValues, length: currentLength)
+            for numberOfValues in (withReplacement ? 1 : currentLength)... {
+                let nextCount = withReplacement
+                    ? Self.countWithReplacement(numberOfValues: numberOfValues, length: currentLength)
+                    : Self.count(numberOfValues: numberOfValues, length: currentLength)
 
                 if nextCount > currentDegree {
-                    currentDegree = currentDegree - count
+                    currentDegree -= count
                     currentLength -= 1
                     numbers.append(numberOfValues - 1)
                     break

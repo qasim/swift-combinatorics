@@ -1,6 +1,8 @@
 import Foundation
 
 extension Permutations: Collection {
+    public typealias Element = [ValueCollection.Element]
+
     public var startIndex: Int {
         0
     }

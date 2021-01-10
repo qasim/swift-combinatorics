@@ -1,6 +1,8 @@
 import Foundation
 
 extension Combinations: Collection {
+    public typealias Element = [ValueCollection.Element]
+    
     public var startIndex: Int {
         0
     }
