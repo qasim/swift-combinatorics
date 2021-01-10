@@ -42,7 +42,7 @@ public struct Permutations<ValueCollection: Collection> {
 
 extension Permutations {
     private static func countWithReplacement(numberOfValues: Int, length: Int) -> Int {
-        Int(pow(Double(numberOfValues), Double(length)))
+        numberOfValues ** length
     }
 
     private static func count(numberOfValues: Int, length: Int) -> Int {
